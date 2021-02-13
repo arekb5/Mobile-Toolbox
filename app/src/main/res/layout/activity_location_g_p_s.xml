@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".LocationGPS">
+
+    <TextView
+        android:id="@+id/tvLongitudeCurrent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/currLongitude"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/tvLatitudeCurrent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/currLatitude"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/tvAltitudeCurrent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/currAltitude"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/tvPrecisionCurrent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/currPrecision"
+        android:visibility="invisible" />
+
+</LinearLayout>

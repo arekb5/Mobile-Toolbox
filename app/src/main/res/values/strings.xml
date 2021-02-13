@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">TestAppV2</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="error_no_sensor">No sensor</string>
+    <string name="label_light">Light Sensor: %1$.2f</string>
+    <string name="label_proximity">Proximity Sensor: %1$.2f</string>
+    <string name="label_accelerometer">Accelerometer: %1$.2fx %2$.2fy %3$.2fz</string>
+    <string name="longitude">Longitude: %1$f</string>
+    <string name="latitude">Latitude: %1$f</string>
+    <string name="altitude">Altitude: %1$.1f</string>
+    <string name="currLongitude">Current Longitude: %1$f</string>
+    <string name="currLatitude">Current Latitude: %1$f</string>
+    <string name="currAltitude">Current Altitude: %1$.1f</string>
+    <string name="currPrecision">Current Precision: %1$f</string>
+</resources>
