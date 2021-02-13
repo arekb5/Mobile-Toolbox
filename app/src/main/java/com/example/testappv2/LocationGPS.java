@@ -121,7 +121,6 @@ public class LocationGPS extends AppCompatActivity {
                                     btnSearch.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View view) {
-                                            Toast.makeText(LocationGPS.this, query, Toast.LENGTH_SHORT).show();
                                             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com/search?q=" + Uri.encode(query)));
                                             startActivity(intent);
                                         }
