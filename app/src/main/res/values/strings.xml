@@ -13,4 +13,6 @@
     <string name="currLatitude">Current Latitude: %1$f</string>
     <string name="currAltitude">Current Altitude: %1$.1f</string>
     <string name="currPrecision">Current Precision: %1$f</string>
+    <string name="currSpeed">Current speed: %1$.2f</string>
+    <string name="currLocation">Current location: %1$s, %2$s, %3$s</string>
 </resources>
