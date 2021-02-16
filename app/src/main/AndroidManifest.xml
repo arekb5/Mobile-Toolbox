@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TestAppV2">
-        <activity android:name=".LocationGPS"></activity>
+        <activity android:name=".Compass"></activity>
+        <activity android:name=".LocationGPS" />
         <activity android:name=".LocationLK" />
         <activity android:name=".Light" />
         <activity android:name=".MainActivity">
@@ -26,7 +27,7 @@
 
         <service
             android:name=".LocationLK"
-            android:foregroundServiceType="location"></service>
+            android:foregroundServiceType="location" />
     </application>
 
 </manifest>

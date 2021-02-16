@@ -19,9 +19,9 @@ import com.google.android.gms.tasks.OnSuccessListener;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnLight, btnLocation, btnGPS;
+    Button btnLight, btnLocation, btnGPS, btnCompass;
     private FusedLocationProviderClient fusedLocationClient;
-    Intent intentLight, intentLocationLK, intentLocationGPS;
+    Intent intentLight, intentLocationLK, intentLocationGPS, intentCompass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +31,11 @@ public class MainActivity extends AppCompatActivity {
         btnLight = findViewById(R.id.btnLight);
         btnLocation = findViewById(R.id.btnLocation);
         btnGPS = findViewById(R.id.btnGPS);
+        btnCompass = findViewById(R.id.btnCompass);
         intentLight = new Intent(MainActivity.this, Light.class);
         intentLocationLK = new Intent(MainActivity.this, LocationLK.class);
         intentLocationGPS = new Intent(MainActivity.this, LocationGPS.class);
+        intentCompass = new Intent(MainActivity.this, Compass.class);
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
@@ -74,6 +76,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(intentLocationLK);
+            }
+        });
+
+        btnCompass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(intentCompass);
             }
         });
 
@@ -131,6 +140,13 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void onClick(View view) {
                                     startActivity(intentLocationGPS);
+                                }
+                            });
+
+                            btnCompass.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    startActivity(intentCompass);
                                 }
                             });
                         }
