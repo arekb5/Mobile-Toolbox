@@ -19,9 +19,9 @@ import com.google.android.gms.tasks.OnSuccessListener;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnLight, btnLocation, btnGPS, btnCompass;
+    Button btnLight, btnLocation, btnGPS, btnCompass, btnLeveler;
     private FusedLocationProviderClient fusedLocationClient;
-    Intent intentLight, intentLocationLK, intentLocationGPS, intentCompass;
+    Intent intentLight, intentLocationLK, intentLocationGPS, intentCompass, intentLeveler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,10 +32,12 @@ public class MainActivity extends AppCompatActivity {
         btnLocation = findViewById(R.id.btnLocation);
         btnGPS = findViewById(R.id.btnGPS);
         btnCompass = findViewById(R.id.btnCompass);
+        btnLeveler = findViewById(R.id.btnLeveler);
         intentLight = new Intent(MainActivity.this, Light.class);
         intentLocationLK = new Intent(MainActivity.this, LocationLK.class);
         intentLocationGPS = new Intent(MainActivity.this, LocationGPS.class);
         intentCompass = new Intent(MainActivity.this, Compass.class);
+        intentLeveler = new Intent(MainActivity.this, Leveler.class);
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
@@ -92,6 +94,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intentLocationGPS);
             }
         });
+
+        btnLeveler.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(intentLeveler);
+            }
+        });
     }
 
 
@@ -110,6 +119,20 @@ public class MainActivity extends AppCompatActivity {
             btnLocation.setEnabled(false);
 
             btnGPS.setEnabled(false);
+
+            btnCompass.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(intentCompass);
+                }
+            });
+
+            btnLeveler.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(intentLeveler);
+                }
+            });
             return;
         }
         fusedLocationClient.getLastLocation()
@@ -147,6 +170,13 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void onClick(View view) {
                                     startActivity(intentCompass);
+                                }
+                            });
+
+                            btnLeveler.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    startActivity(intentLeveler);
                                 }
                             });
                         }

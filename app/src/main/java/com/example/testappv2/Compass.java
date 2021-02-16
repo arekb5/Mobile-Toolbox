@@ -9,6 +9,7 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,8 +19,6 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
     private TextView tvHeading;
     private SensorManager mSensorManager;
     private float currentDegree = 0;
-    private Sensor accelerometer;
-    private Sensor magnetometer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
