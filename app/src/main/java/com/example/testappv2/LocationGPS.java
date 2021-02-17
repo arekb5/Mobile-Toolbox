@@ -92,7 +92,7 @@ public class LocationGPS extends AppCompatActivity {
                     tvLongitudeCurrent.setText(getResources().getString(R.string.currLongitude, location.getLongitude()));
                     tvLatitudeCurrent.setText(getResources().getString(R.string.currLatitude, location.getLatitude()));
                     tvAltitudeCurrent.setText(getResources().getString(R.string.currAltitude, location.getAltitude()));
-                    tvPrecisionCurrent.setText(getResources().getString(R.string.currPrecision, location.getVerticalAccuracyMeters()));
+                    tvPrecisionCurrent.setText(getResources().getString(R.string.currPrecision, location.getAccuracy()));
                     tvSpeedCurrent.setText(getResources().getString(R.string.currSpeed, location.getSpeed()));
 
                     if(ActivityCompat.checkSelfPermission(LocationGPS.this, Manifest.permission.ACCESS_NETWORK_STATE) == PackageManager.PERMISSION_GRANTED) {

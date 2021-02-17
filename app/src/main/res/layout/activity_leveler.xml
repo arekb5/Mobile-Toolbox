@@ -10,7 +10,11 @@
     <TextView
         android:id="@+id/tvAngle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:fontFamily="@font/alarm_clock"
+        android:textAlignment="center"
+        android:textSize="64sp" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -20,8 +24,8 @@
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleY="1.5"
-            app:srcCompat="@drawable/scale" />
+            android:scaleY="1"
+            app:srcCompat="@drawable/scale_wide" />
 
         <ImageView
             android:id="@+id/ivArrow"

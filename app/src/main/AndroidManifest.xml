@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TestAppV2">
-        <activity android:name=".Leveler"></activity>
+        <activity android:name=".Speedometer"></activity>
+        <activity android:name=".Leveler" />
         <activity android:name=".Compass" />
         <activity android:name=".LocationGPS" />
         <activity android:name=".LocationLK" />

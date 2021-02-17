@@ -35,6 +35,15 @@
         android:text="GPS Location" />
 
     <Button
+        android:id="@+id/btnSpeedo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:text="Speedometer" />
+
+    <Button
         android:id="@+id/btnCompass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

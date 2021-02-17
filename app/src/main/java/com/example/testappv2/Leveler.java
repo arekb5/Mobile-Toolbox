@@ -67,7 +67,7 @@ public class Leveler extends AppCompatActivity implements SensorEventListener {
             if(orientations[2] < -65) rotationModifier = 90;
             orientations[2] += rotationModifier;
             orientations[2] = (float) (Math.round(orientations[2]*10)/10.0);
-            tvAngle.setText(Float.toString(orientations[2]));
+            tvAngle.setText(Float.toString(orientations[2]) + "°");
             if(orientations[2]> 10) orientations[2] = 10;
             if(orientations[2]< -10) orientations[2] = -10;
             TranslateAnimation anim = new TranslateAnimation(currentPosition, (ivArrow.getWidth()*(orientations[2]/21)), 0, 0);
