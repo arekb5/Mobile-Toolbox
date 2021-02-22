@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Leveler">
+
+    <TextView
+        android:id="@+id/tvAngle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/alarm_clock"
+        android:textAlignment="center"
+        android:textSize="64sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleY="1"
+            app:srcCompat="@drawable/scale_wide" />
+
+        <ImageView
+            android:id="@+id/ivArrow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="50dp"
+            android:scaleX="0.18"
+            android:scaleY="0.18"
+            app:srcCompat="@drawable/ic_arrow_down_red" />
+    </RelativeLayout>
+</LinearLayout>

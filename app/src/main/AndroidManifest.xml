@@ -15,7 +15,7 @@
         android:theme="@style/Theme.TestAppV2">
         <activity android:name=".Speedometer"></activity>
         <activity android:name=".Leveler" />
-        <activity android:name=".Compass" />
+        <activity android:name=".Compass" android:screenOrientation="portrait" />
         <activity android:name=".LocationGPS" />
         <activity android:name=".LocationLK" />
         <activity android:name=".Light" />

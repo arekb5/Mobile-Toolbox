@@ -23,6 +23,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,27 +42,41 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
 public class Speedometer extends AppCompatActivity {
-    TextView tvSpeed, tvInfo, tvDistance;
+    TextView tvSpeed, tvInfo, tvDistance, tvAverageSpeed, tvMaxSpeed;
     float distance = 0f;
     boolean accuracyFlag = false, firstIteration = true;
     private LocationCallback locationCallback;
     private static final int REQUEST_CHECK_SETTINGS = 111;
     private FusedLocationProviderClient fusedLocationClient;
     private Location lastKnown;
+    private long firstIterTime = 0;
+    float avgSpeed = 0, maxSpeed = 0;
 
     @SuppressLint("MissingPermission")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_speedometer);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         tvSpeed = findViewById(R.id.tvSpeed);
         tvInfo = findViewById(R.id.tvInfo);
         tvDistance = findViewById(R.id.tvDistance);
-        if(savedInstanceState != null) distance = savedInstanceState.getFloat("distance");
+        tvAverageSpeed = findViewById(R.id.tvAverageSpeed);
+        tvMaxSpeed = findViewById(R.id.tvMaxSpeed);
+        if(savedInstanceState != null) {
+            distance = savedInstanceState.getFloat("distance");
+            maxSpeed = savedInstanceState.getFloat("maxSpeed");
+            firstIterTime = savedInstanceState.getLong("firstIterTime");
+            tvDistance.setText("Distance:\n" + Float.toString((float) Math.round(distance*10)/10) + "m\n");
+            tvAverageSpeed.setText("Average speed:\n" + Float.toString((float)Math.round(avgSpeed*10)/10) + "km/h\n");
+            tvMaxSpeed.setText("Max speed:\n" + Float.toString((float) Math.round((maxSpeed*3.6f)*10)/10) + "km/h");
+        }
         locationCallback = new LocationCallback() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
@@ -70,38 +85,37 @@ public class Speedometer extends AppCompatActivity {
                     return;
                 }
                 Location location = locationResult.getLastLocation();
-                //for (Location location : locationResult.getLocations()) {
-                    int a = 0;
-                    if(firstIteration){
-                        lastKnown = location;
-                        firstIteration = false;
-                        a = 1;
-                    }
-                    if(location.getAccuracy()>12f && accuracyFlag==false){
-                        tvInfo.setText("Waiting for satellites...");
-                        tvSpeed.setText("0.0\nkm/h");
-                        a = 2;
-                        tvInfo.setText(Integer.toString(a));
-                        return;
-                    }
-                    if(location.getAccuracy()>20f && accuracyFlag==true){
-                        accuracyFlag = false;
-                        a = 3;
-                        tvInfo.setText(Integer.toString(a));
-                        return;
-                    }
-                    if(location.getAccuracy()<=12f && accuracyFlag==false){
-                        accuracyFlag = true;
-                        tvInfo.setText("");
-                        a = 4;
-                    }
-                    distance += location.distanceTo(lastKnown);
-                    lastKnown = location;
-                    tvSpeed.setText(Float.toString((float) Math.round((location.getSpeed()*3.6f)*10)/10) + "\nkm/h");
-                    tvDistance.setText(Float.toString((float) Math.round(distance*10)/10) + "m");
-                    tvInfo.setText(Integer.toString(a));
+                if(location.getAccuracy()>12f && accuracyFlag==false){
+                    tvInfo.setText("Waiting for satellites...");
+                    tvSpeed.setText("0.0\nkm/h");
+                    return;
                 }
-            //}
+                if(location.getAccuracy()>20f && accuracyFlag==true){
+                    accuracyFlag = false;
+                    return;
+                }
+                if(location.getAccuracy()<=12f && accuracyFlag==false){
+                    accuracyFlag = true;
+                    if(firstIteration==true && accuracyFlag==true){
+                        lastKnown = location;
+                        if(firstIterTime == 0)
+                            firstIterTime = Calendar.getInstance().getTime().getTime();
+                        firstIteration = false;
+                    }
+                    tvInfo.setText("");
+                }
+                if(location.getSpeed()>maxSpeed) {
+                    maxSpeed = location.getSpeed();
+                    tvMaxSpeed.setText("Max speed:\n" + Float.toString((float) Math.round((maxSpeed*3.6f)*10)/10) + "km/h");
+                }
+                distance += location.distanceTo(lastKnown);
+                avgSpeed = (distance / ((Calendar.getInstance().getTime().getTime()-firstIterTime)/1000))*3.6f;
+                lastKnown = location;
+                tvSpeed.setText(Float.toString((float) Math.round((location.getSpeed()*3.6f)*10)/10) + "\nkm/h");
+                tvDistance.setText("Distance:\n" + Float.toString((float) Math.round(distance*10)/10) + "m\n");
+                tvAverageSpeed.setText("Average speed:\n" + Float.toString((float)Math.round(avgSpeed*10)/10) + "km/h\n");
+
+            }
         };
 
         LocationManager locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
@@ -194,5 +208,7 @@ public class Speedometer extends AppCompatActivity {
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putFloat("distance", distance);
+        outState.putLong("firstIterTime", firstIterTime);
+        outState.putFloat("maxSpeed", maxSpeed);
     }
 }

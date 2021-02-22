@@ -10,21 +10,36 @@
         android:id="@+id/tvLongitude"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/audiowide"
         android:text="@string/longitude"
+        android:textSize="30sp"
         android:visibility="invisible" />
 
     <TextView
         android:id="@+id/tvLatitude"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/audiowide"
         android:text="@string/latitude"
+        android:textSize="30sp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
         android:visibility="invisible" />
 
     <TextView
         android:id="@+id/tvAltitude"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/audiowide"
         android:text="@string/altitude"
+        android:textSize="30sp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
         android:visibility="invisible" />
 
 </LinearLayout>
