@@ -2,6 +2,7 @@ package com.example.testappv2;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         btnLight = findViewById(R.id.btnLight);
         btnLocation = findViewById(R.id.btnLocation);
         btnGPS = findViewById(R.id.btnGPS);

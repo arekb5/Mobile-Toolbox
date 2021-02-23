@@ -13,12 +13,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TestAppV2">
-        <activity android:name=".Speedometer"></activity>
-        <activity android:name=".Leveler" />
-        <activity android:name=".Compass" android:screenOrientation="portrait" />
-        <activity android:name=".LocationGPS" />
-        <activity android:name=".LocationLK" />
-        <activity android:name=".Light" />
+        <activity android:name=".Speedometer" android:parentActivityName=".MainActivity"></activity>
+        <activity android:name=".Leveler" android:parentActivityName=".MainActivity"/>
+        <activity android:name=".Compass" android:screenOrientation="portrait" android:parentActivityName=".MainActivity"/>
+        <activity android:name=".LocationGPS" android:parentActivityName=".MainActivity"/>
+        <activity android:name=".LocationLK" android:parentActivityName=".MainActivity"/>
+        <activity android:name=".Light" android:parentActivityName=".MainActivity"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#000000"
     android:orientation="vertical"
     tools:context=".Light">
 
@@ -11,19 +12,23 @@
         android:id="@+id/label_light"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/label_light" />
+        android:text="@string/label_light"
+        android:textColor="#FFFFFF" />
 
     <TextView
         android:id="@+id/label_proximity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/label_proximity" />
+        android:text="@string/label_proximity"
+        android:textColor="#FFFFFF" />
 
     <TextView
         android:id="@+id/label_accelerometer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/label_accelerometer" />
+        android:shadowColor="#FFFFFF"
+        android:text="@string/label_accelerometer"
+        android:textColor="#FFFFFF" />
 
     <RelativeLayout
         android:layout_width="match_parent"

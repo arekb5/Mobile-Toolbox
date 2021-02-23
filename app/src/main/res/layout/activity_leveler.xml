@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#000000"
     android:orientation="vertical"
     tools:context=".Leveler">
 
@@ -14,6 +15,7 @@
         android:layout_marginTop="100dp"
         android:fontFamily="@font/alarm_clock"
         android:textAlignment="center"
+        android:textColor="#FFFFFF"
         android:textSize="64sp" />
 
     <RelativeLayout

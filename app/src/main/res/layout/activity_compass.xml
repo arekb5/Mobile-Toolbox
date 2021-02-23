@@ -4,13 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#000000"
     android:orientation="vertical"
     tools:context=".Compass">
 
     <TextView
         android:id="@+id/tvHeading"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/audiowide"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="24sp" />
 
     <ImageView
         android:id="@+id/ivCompass"

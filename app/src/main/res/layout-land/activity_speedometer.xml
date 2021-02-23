@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        tools:context=".Speedometer"
-        >
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    tools:context=".Speedometer">
 
     <TextView
         android:id="@+id/tvInfo"
@@ -16,6 +15,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/audiowide"
         android:textAlignment="center"
+        android:textColor="#FFFFFF"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -29,6 +29,7 @@
         android:fontFamily="@font/alarm_clock"
         android:text="0.0\nkm/h"
         android:textAlignment="center"
+        android:textColor="#FFFFFF"
         android:textSize="100sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -42,6 +43,7 @@
         android:layout_marginTop="40dp"
         android:fontFamily="@font/audiowide"
         android:textAlignment="center"
+        android:textColor="#FFFFFF"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,6 +58,7 @@
         android:layout_marginTop="125dp"
         android:fontFamily="@font/audiowide"
         android:textAlignment="center"
+        android:textColor="#FFFFFF"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -69,9 +72,10 @@
         android:layout_marginTop="210dp"
         android:fontFamily="@font/audiowide"
         android:textAlignment="center"
+        android:textColor="#FFFFFF"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
