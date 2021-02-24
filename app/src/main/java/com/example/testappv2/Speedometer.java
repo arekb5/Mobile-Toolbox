@@ -73,10 +73,10 @@ public class Speedometer extends AppCompatActivity {
             distance = savedInstanceState.getFloat("distance");
             maxSpeed = savedInstanceState.getFloat("maxSpeed");
             firstIterTime = savedInstanceState.getLong("firstIterTime");
-            tvDistance.setText("Distance:\n" + Float.toString((float) Math.round(distance*10)/10) + "m\n");
-            tvAverageSpeed.setText("Average speed:\n" + Float.toString((float)Math.round(avgSpeed*10)/10) + "km/h\n");
-            tvMaxSpeed.setText("Max speed:\n" + Float.toString((float) Math.round((maxSpeed*3.6f)*10)/10) + "km/h");
         }
+        tvDistance.setText("Distance:\n" + Float.toString((float) Math.round(distance*10)/10) + "m\n");
+        tvAverageSpeed.setText("Average speed:\n" + Float.toString((float)Math.round(avgSpeed*10)/10) + "km/h\n");
+        tvMaxSpeed.setText("Max speed:\n" + Float.toString((float) Math.round((maxSpeed*3.6f)*10)/10) + "km/h");
         locationCallback = new LocationCallback() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override

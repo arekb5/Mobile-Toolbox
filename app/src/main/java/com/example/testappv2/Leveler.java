@@ -1,5 +1,6 @@
 package com.example.testappv2;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.hardware.Sensor;
@@ -25,6 +26,11 @@ public class Leveler extends AppCompatActivity implements SensorEventListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leveler);
+        new AlertDialog.Builder(this)
+                .setTitle("Sensor calibration")
+                .setMessage("To increase accuracy it is advised to rotate your device around X, Y and Z axis before using leveler.")
+                .setPositiveButton(android.R.string.ok, null)
+                .show();
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         tvAngle = findViewById(R.id.tvAngle);
         orientations = new float[3];

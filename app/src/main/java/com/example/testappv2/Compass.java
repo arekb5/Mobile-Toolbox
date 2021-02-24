@@ -1,5 +1,6 @@
 package com.example.testappv2;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.hardware.Sensor;
@@ -24,6 +25,11 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_compass);
+        new AlertDialog.Builder(this)
+                .setTitle("Sensor calibration")
+                .setMessage("To increase accuracy it is advised to rotate your device around X, Y and Z axis before using compass. To provide maximum accuracy while using compass, hold the device as flat as possible.")
+                .setPositiveButton(android.R.string.ok, null)
+                .show();
         ivCompass = findViewById(R.id.ivCompass);
         tvHeading = findViewById(R.id.tvHeading);
         mSensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
