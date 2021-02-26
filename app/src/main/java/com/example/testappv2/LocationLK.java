@@ -1,42 +1,21 @@
 package com.example.testappv2;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-
 import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
-import android.location.Location;
-import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.common.api.ResolvableApiException;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.location.LocationSettingsRequest;
-import com.google.android.gms.location.LocationSettingsResponse;
-import com.google.android.gms.location.LocationSettingsStates;
-import com.google.android.gms.location.LocationSettingsStatusCodes;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
@@ -52,7 +31,7 @@ public class LocationLK extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location);
-
+        getSupportActionBar().setTitle("Last known location");
         tvAltitude = findViewById(R.id.tvAltitude);
         tvLongitude = findViewById(R.id.tvLongitude);
         tvLatitude = findViewById(R.id.tvLatitude);
@@ -90,11 +69,11 @@ public class LocationLK extends AppCompatActivity {
                         String countryName = (addresses.get(0).getCountryName() == null) ? "Unknown" : addresses.get(0).getCountryName();
                         tvLocationCurrentLK.setText(getResources().getString(R.string.currLocation, locality, adminArea, countryName));
                         btnSearchLK.setEnabled(true);
-                        if(locality != "Unknown") query += locality;
-                        if(locality != "Unknown" && adminArea != "Unknown") query += ", ";
-                        if(adminArea != "Unknown") query += adminArea;
-                        if(adminArea != "Unknown" && countryName != "Unknown") query += ", ";
-                        if(countryName != "Unknown") query += countryName;
+                        if(!locality.equals("Unknown")) query += locality;
+                        if(!locality.equals("Unknown") && adminArea != "Unknown") query += ", ";
+                        if(!adminArea.equals("Unknown")) query += adminArea;
+                        if(!adminArea.equals("Unknown") && countryName != "Unknown") query += ", ";
+                        if(!countryName.equals("Unknown")) query += countryName;
                         btnSearchLK.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {

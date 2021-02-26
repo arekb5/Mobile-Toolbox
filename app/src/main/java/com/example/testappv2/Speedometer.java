@@ -3,30 +3,19 @@ package com.example.testappv2;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
-import android.content.pm.PackageManager;
-import android.location.Address;
-import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
-import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -40,12 +29,7 @@ import com.google.android.gms.location.LocationSettingsStates;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-
-import java.io.IOException;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
 
 public class Speedometer extends AppCompatActivity {
     TextView tvSpeed, tvInfo, tvDistance, tvAverageSpeed, tvMaxSpeed;
@@ -64,6 +48,7 @@ public class Speedometer extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_speedometer);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        getSupportActionBar().setTitle("Speedometer");
         tvSpeed = findViewById(R.id.tvSpeed);
         tvInfo = findViewById(R.id.tvInfo);
         tvDistance = findViewById(R.id.tvDistance);
@@ -85,18 +70,18 @@ public class Speedometer extends AppCompatActivity {
                     return;
                 }
                 Location location = locationResult.getLastLocation();
-                if(location.getAccuracy()>12f && accuracyFlag==false){
+                if(location.getAccuracy()>12f && !accuracyFlag){
                     tvInfo.setText("Waiting for satellites...");
                     tvSpeed.setText("0.0\nkm/h");
                     return;
                 }
-                if(location.getAccuracy()>20f && accuracyFlag==true){
+                if(location.getAccuracy()>20f && accuracyFlag){
                     accuracyFlag = false;
                     return;
                 }
-                if(location.getAccuracy()<=12f && accuracyFlag==false){
+                if(location.getAccuracy()<=12f && !accuracyFlag){
                     accuracyFlag = true;
-                    if(firstIteration==true && accuracyFlag==true){
+                    if(firstIteration){
                         lastKnown = location;
                         if(firstIterTime == 0)
                             firstIterTime = Calendar.getInstance().getTime().getTime();
@@ -109,7 +94,7 @@ public class Speedometer extends AppCompatActivity {
                     tvMaxSpeed.setText("Max speed:\n" + Float.toString((float) Math.round((maxSpeed*3.6f)*10)/10) + "km/h");
                 }
                 distance += location.distanceTo(lastKnown);
-                avgSpeed = (distance / ((Calendar.getInstance().getTime().getTime()-firstIterTime)/1000))*3.6f;
+                avgSpeed = (distance / ((Calendar.getInstance().getTime().getTime()-firstIterTime)/1000f))*3.6f;
                 lastKnown = location;
                 tvSpeed.setText(Float.toString((float) Math.round((location.getSpeed()*3.6f)*10)/10) + "\nkm/h");
                 tvDistance.setText("Distance:\n" + Float.toString((float) Math.round(distance*10)/10) + "m\n");
@@ -183,7 +168,6 @@ public class Speedometer extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        final LocationSettingsStates states = LocationSettingsStates.fromIntent(data);
 
         switch (requestCode) {
             case REQUEST_CHECK_SETTINGS:

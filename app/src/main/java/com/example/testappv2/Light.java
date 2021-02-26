@@ -25,7 +25,7 @@ public class Light extends AppCompatActivity implements SensorEventListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_light);
-
+        getSupportActionBar().setTitle("Light sensor");
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mTextSensorLight = findViewById(R.id.label_light);
         mSensorLight = mSensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
@@ -56,20 +56,16 @@ public class Light extends AppCompatActivity implements SensorEventListener {
     public void onSensorChanged(SensorEvent sensorEvent) {
         int sensorType = sensorEvent.sensor.getType();
         float currentValue[] = sensorEvent.values;
-        switch (sensorType) {
-            // Event came from the light sensor.
-            case Sensor.TYPE_LIGHT:
-                mTextSensorLight.setText(getResources().getString(
-                        R.string.label_light, currentValue[0]));
-                if(currentValue[0]>=0 && currentValue[0]<1) bulb.setImageAlpha(0);
-                else if(currentValue[0]>=1 && currentValue[0]<5) bulb.setImageAlpha(50);
-                else if(currentValue[0]>=5 && currentValue[0]<10) bulb.setImageAlpha(100);
-                else if(currentValue[0]>=10 && currentValue[0]<20) bulb.setImageAlpha(150);
-                else if(currentValue[0]>=20 && currentValue[0]<100) bulb.setImageAlpha(200);
-                else if(currentValue[0]>=100) bulb.setImageAlpha(255);
-                break;
-            default:
-                return;
+        // Event came from the light sensor.
+        if (sensorType == Sensor.TYPE_LIGHT) {
+            mTextSensorLight.setText(getResources().getString(
+                    R.string.label_light, currentValue[0]));
+            if (currentValue[0] >= 0 && currentValue[0] < 1) bulb.setImageAlpha(0);
+            else if (currentValue[0] >= 1 && currentValue[0] < 5) bulb.setImageAlpha(50);
+            else if (currentValue[0] >= 5 && currentValue[0] < 10) bulb.setImageAlpha(100);
+            else if (currentValue[0] >= 10 && currentValue[0] < 20) bulb.setImageAlpha(150);
+            else if (currentValue[0] >= 20 && currentValue[0] < 100) bulb.setImageAlpha(200);
+            else if (currentValue[0] >= 100) bulb.setImageAlpha(255);
         }
     }
 

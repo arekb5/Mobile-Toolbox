@@ -3,7 +3,6 @@ package com.example.testappv2;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -24,13 +23,10 @@ import android.os.Looper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
-import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
@@ -66,7 +62,7 @@ public class LocationGPS extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_g_p_s);
-
+        getSupportActionBar().setTitle("GPS Location");
         tvAltitudeCurrent = findViewById(R.id.tvAltitudeCurrent);
         tvLongitudeCurrent = findViewById(R.id.tvLongitudeCurrent);
         tvLatitudeCurrent = findViewById(R.id.tvLatitudeCurrent);
@@ -113,11 +109,11 @@ public class LocationGPS extends AppCompatActivity {
                                     String countryName = (addresses.get(0).getCountryName() == null) ? "Unknown" : addresses.get(0).getCountryName();
                                     tvLocationCurrent.setText(getResources().getString(R.string.currLocation, locality, adminArea, countryName));
                                     btnSearch.setEnabled(true);
-                                    if(locality != "Unknown") query += locality;
-                                    if(locality != "Unknown" && adminArea != "Unknown") query += ", ";
-                                    if(adminArea != "Unknown") query += adminArea;
-                                    if(adminArea != "Unknown" && countryName != "Unknown") query += ", ";
-                                    if(countryName != "Unknown") query += countryName;
+                                    if(!locality.equals("Unknown")) query += locality;
+                                    if(!locality.equals("Unknown") && adminArea != "Unknown") query += ", ";
+                                    if(!adminArea.equals("Unknown")) query += adminArea;
+                                    if(!adminArea.equals("Unknown") && countryName != "Unknown") query += ", ";
+                                    if(!countryName.equals("Unknown")) query += countryName;
                                     btnSearch.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View view) {
@@ -213,19 +209,16 @@ public class LocationGPS extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        final LocationSettingsStates states = LocationSettingsStates.fromIntent(data);
 
         switch (requestCode) {
             case REQUEST_CHECK_SETTINGS:
                 switch (resultCode) {
                     case Activity.RESULT_OK:
                         startLocation();
-                        Toast.makeText(getApplicationContext(),"User has clicked on OK - So GPS is on", Toast.LENGTH_SHORT).show();
                         break;
                     case Activity.RESULT_CANCELED:
                         tvLongitudeCurrent.setText("To see the data GPS has to be turned on. Turn on GPS.");
                         tvLongitudeCurrent.setVisibility(View.VISIBLE);
-                        Toast.makeText(getApplicationContext(),"User has clicked on NO, THANKS - So GPS is still off.", Toast.LENGTH_SHORT).show();
                         break;
                     default:
                         break;
