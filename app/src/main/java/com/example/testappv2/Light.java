@@ -60,12 +60,13 @@ public class Light extends AppCompatActivity implements SensorEventListener {
         if (sensorType == Sensor.TYPE_LIGHT) {
             mTextSensorLight.setText(getResources().getString(
                     R.string.label_light, currentValue[0]));
-            if (currentValue[0] >= 0 && currentValue[0] < 1) bulb.setImageAlpha(0);
-            else if (currentValue[0] >= 1 && currentValue[0] < 5) bulb.setImageAlpha(50);
-            else if (currentValue[0] >= 5 && currentValue[0] < 10) bulb.setImageAlpha(100);
-            else if (currentValue[0] >= 10 && currentValue[0] < 20) bulb.setImageAlpha(150);
-            else if (currentValue[0] >= 20 && currentValue[0] < 100) bulb.setImageAlpha(200);
-            else if (currentValue[0] >= 100) bulb.setImageAlpha(255);
+            if (currentValue[0] >= 0 && currentValue[0] < 1) bulb.animate().alpha(0f).setDuration(200).setListener(null);
+            else if (currentValue[0] >= 1 && currentValue[0] < 5) bulb.animate().alpha(50f/255f).setDuration(200).setListener(null);
+            else if (currentValue[0] >= 5 && currentValue[0] < 10) bulb.animate().alpha(100f/255f).setDuration(200).setListener(null);
+            else if (currentValue[0] >= 10 && currentValue[0] < 20) bulb.animate().alpha(150f/255f).setDuration(200).setListener(null);
+            else if (currentValue[0] >= 20 && currentValue[0] < 50) bulb.animate().alpha(180f/255f).setDuration(200).setListener(null);
+            else if (currentValue[0] >= 50 && currentValue[0] < 100) bulb.animate().alpha(210f/255f).setDuration(200).setListener(null);
+            else if (currentValue[0] >= 100) bulb.animate().alpha(1f).setDuration(200).setListener(null);
         }
     }
 

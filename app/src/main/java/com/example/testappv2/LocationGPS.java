@@ -47,7 +47,6 @@ public class LocationGPS extends AppCompatActivity {
     private TextView tvLatitudeCurrent;
     private TextView tvAltitudeCurrent;
     private TextView tvPrecisionCurrent;
-    private TextView tvSpeedCurrent;
     private TextView tvLocationCurrent;
     private Button btnShowMaps;
     private Button btnSearch;
@@ -67,7 +66,6 @@ public class LocationGPS extends AppCompatActivity {
         tvLongitudeCurrent = findViewById(R.id.tvLongitudeCurrent);
         tvLatitudeCurrent = findViewById(R.id.tvLatitudeCurrent);
         tvPrecisionCurrent = findViewById(R.id.tvPrecisionCurrent);
-        tvSpeedCurrent = findViewById(R.id.tvSpeedCurrent);
         tvLocationCurrent = findViewById(R.id.tvLocationCurrent);
         btnShowMaps = findViewById(R.id.btnShowMaps);
         btnSearch = findViewById(R.id.btnSearch);
@@ -82,14 +80,12 @@ public class LocationGPS extends AppCompatActivity {
                 tvLatitudeCurrent.setVisibility(View.VISIBLE);
                 tvAltitudeCurrent.setVisibility(View.VISIBLE);
                 tvPrecisionCurrent.setVisibility(View.VISIBLE);
-                tvSpeedCurrent.setVisibility(View.VISIBLE);
                 btnShowMaps.setVisibility(View.VISIBLE);
                 for (Location location : locationResult.getLocations()) {
                     tvLongitudeCurrent.setText(getResources().getString(R.string.currLongitude, location.getLongitude()));
                     tvLatitudeCurrent.setText(getResources().getString(R.string.currLatitude, location.getLatitude()));
                     tvAltitudeCurrent.setText(getResources().getString(R.string.currAltitude, location.getAltitude()));
                     tvPrecisionCurrent.setText(getResources().getString(R.string.currPrecision, location.getAccuracy()));
-                    tvSpeedCurrent.setText(getResources().getString(R.string.currSpeed, location.getSpeed()));
 
                     if(ActivityCompat.checkSelfPermission(LocationGPS.this, Manifest.permission.ACCESS_NETWORK_STATE) == PackageManager.PERMISSION_GRANTED) {
                         Geocoder gcd = new Geocoder(LocationGPS.this, Locale.getDefault());
@@ -107,7 +103,12 @@ public class LocationGPS extends AppCompatActivity {
                                     String locality = (addresses.get(0).getLocality() == null) ? "Unknown" : addresses.get(0).getLocality();
                                     String adminArea = (addresses.get(0).getAdminArea() == null) ? "Unknown" : addresses.get(0).getAdminArea();
                                     String countryName = (addresses.get(0).getCountryName() == null) ? "Unknown" : addresses.get(0).getCountryName();
-                                    tvLocationCurrent.setText(getResources().getString(R.string.currLocation, locality, adminArea, countryName));
+                                    String street = (addresses.get(0).getThoroughfare() == null || addresses.get(0).getThoroughfare().equals("Unnamed Road")) ? "" : addresses.get(0).getThoroughfare();
+                                    String number = (addresses.get(0).getSubThoroughfare() == null || street.equals("")) ? "" : addresses.get(0).getSubThoroughfare();
+                                    if(!street.equals("") && !number.equals("")) street = street + " " + number + ", ";
+                                    else if(!street.equals("") && number.equals("")) street = street + ", ";
+                                    else if(street.equals("") && addresses.get(0).getPremises() != null) street = addresses.get(0).getPremises() + ", ";
+                                    tvLocationCurrent.setText(getResources().getString(R.string.currLocation, street, locality, adminArea, countryName));
                                     btnSearch.setEnabled(true);
                                     if(!locality.equals("Unknown")) query += locality;
                                     if(!locality.equals("Unknown") && adminArea != "Unknown") query += ", ";

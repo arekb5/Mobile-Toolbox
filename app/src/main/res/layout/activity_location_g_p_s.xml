@@ -70,19 +70,6 @@
                 android:visibility="invisible" />
 
             <TextView
-                android:id="@+id/tvSpeedCurrent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="20dp"
-                android:fontFamily="@font/audiowide"
-                android:text="@string/currSpeed"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                android:visibility="invisible" />
-
-            <TextView
                 android:id="@+id/tvLocationCurrent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

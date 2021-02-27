@@ -67,7 +67,12 @@ public class LocationLK extends AppCompatActivity {
                         String locality = (addresses.get(0).getLocality() == null) ? "Unknown" : addresses.get(0).getLocality();
                         String adminArea = (addresses.get(0).getAdminArea() == null) ? "Unknown" : addresses.get(0).getAdminArea();
                         String countryName = (addresses.get(0).getCountryName() == null) ? "Unknown" : addresses.get(0).getCountryName();
-                        tvLocationCurrentLK.setText(getResources().getString(R.string.currLocation, locality, adminArea, countryName));
+                        String street = (addresses.get(0).getThoroughfare() == null || addresses.get(0).getThoroughfare().equals("Unnamed Road")) ? "" : addresses.get(0).getThoroughfare();
+                        String number = (addresses.get(0).getSubThoroughfare() == null || street.equals("")) ? "" : addresses.get(0).getSubThoroughfare();
+                        if(!street.equals("") && !number.equals("")) street = street + " " + number + ", ";
+                        else if(!street.equals("") && number.equals("")) street = street + ", ";
+                        else if(street.equals("") && addresses.get(0).getPremises() != null) street = addresses.get(0).getPremises() + ", ";
+                        tvLocationCurrentLK.setText(getResources().getString(R.string.currLocation, street, locality, adminArea, countryName));
                         btnSearchLK.setEnabled(true);
                         if(!locality.equals("Unknown")) query += locality;
                         if(!locality.equals("Unknown") && adminArea != "Unknown") query += ", ";
