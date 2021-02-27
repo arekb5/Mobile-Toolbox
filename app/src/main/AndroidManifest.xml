@@ -9,13 +9,14 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_icon_rectangle"
-        android:label="App name"
+        android:label="Mobile toolbox"
         android:roundIcon="@drawable/ic_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.TestAppV2">
-        <activity android:name=".Speedometer" android:parentActivityName=".MainActivity"></activity>
+        <activity android:name=".Speedometer" android:parentActivityName=".MainActivity"/>
         <activity android:name=".Leveler" android:parentActivityName=".MainActivity"/>
-        <activity android:name=".Compass" android:screenOrientation="portrait" android:parentActivityName=".MainActivity"/>
+        <activity android:name=".Compass" android:screenOrientation="portrait"
+            android:parentActivityName=".MainActivity"/>
         <activity android:name=".LocationGPS" android:parentActivityName=".MainActivity"/>
         <activity android:name=".LocationLK" android:parentActivityName=".MainActivity"/>
         <activity android:name=".Light" android:parentActivityName=".MainActivity"/>
@@ -26,10 +27,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <service
-            android:name=".LocationLK"
-            android:foregroundServiceType="location" />
     </application>
 
 </manifest>

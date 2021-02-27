@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        getSupportActionBar().setTitle("App name");
+        getSupportActionBar().setTitle("Mobile toolbox");
         btnLight = findViewById(R.id.btnLight);
         btnLocation = findViewById(R.id.btnLocation);
         btnGPS = findViewById(R.id.btnGPS);
