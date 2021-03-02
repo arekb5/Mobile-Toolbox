@@ -58,6 +58,7 @@ public class Speedometer extends AppCompatActivity {
             distance = savedInstanceState.getFloat("distance");
             maxSpeed = savedInstanceState.getFloat("maxSpeed");
             firstIterTime = savedInstanceState.getLong("firstIterTime");
+            avgSpeed = savedInstanceState.getFloat("avgSpeed");
         }
         tvDistance.setText("Distance:\n" + Float.toString((float) Math.round(distance*10)/10) + "m\n");
         tvAverageSpeed.setText("Average speed:\n" + Float.toString((float)Math.round(avgSpeed*10)/10) + "km/h\n");
@@ -94,8 +95,8 @@ public class Speedometer extends AppCompatActivity {
                     tvMaxSpeed.setText("Max speed:\n" + Float.toString((float) Math.round((maxSpeed*3.6f)*10)/10) + "km/h");
                 }
                 distance += location.distanceTo(lastKnown);
-                avgSpeed = (distance / ((Calendar.getInstance().getTime().getTime()-firstIterTime)/1000f))*3.6f;
                 lastKnown = location;
+                avgSpeed = (distance / ((Calendar.getInstance().getTime().getTime()-firstIterTime)/1000f))*3.6f;
                 tvSpeed.setText(Float.toString((float) Math.round((location.getSpeed()*3.6f)*10)/10) + "\nkm/h");
                 tvDistance.setText("Distance:\n" + Float.toString((float) Math.round(distance*10)/10) + "m\n");
                 tvAverageSpeed.setText("Average speed:\n" + Float.toString((float)Math.round(avgSpeed*10)/10) + "km/h\n");
@@ -174,12 +175,9 @@ public class Speedometer extends AppCompatActivity {
                 switch (resultCode) {
                     case Activity.RESULT_OK:
                         startLocation();
-                        Toast.makeText(getApplicationContext(),"User has clicked on OK - So GPS is on", Toast.LENGTH_SHORT).show();
                         break;
                     case Activity.RESULT_CANCELED:
-                        /*tvLongitudeCurrent.setText("To see the data GPS has to be turned on. Turn on GPS.");
-                        tvLongitudeCurrent.setVisibility(View.VISIBLE);*/
-                        Toast.makeText(getApplicationContext(),"User has clicked on NO, THANKS - So GPS is still off.", Toast.LENGTH_SHORT).show();
+                        tvInfo.setText("To see the data GPS has to be turned on. Turn on GPS.");
                         break;
                     default:
                         break;
@@ -189,10 +187,20 @@ public class Speedometer extends AppCompatActivity {
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        LocationManager locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+        if(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
+            fusedLocationClient.removeLocationUpdates(locationCallback);
+        }
+    }
+
+    @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putFloat("distance", distance);
         outState.putLong("firstIterTime", firstIterTime);
         outState.putFloat("maxSpeed", maxSpeed);
+        outState.putFloat("avgSpeed", avgSpeed);
     }
 }

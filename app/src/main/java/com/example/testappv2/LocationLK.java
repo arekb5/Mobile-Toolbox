@@ -47,19 +47,20 @@ public class LocationLK extends AppCompatActivity {
         btnShowMapsLK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("geo:"+Uri.encode(Double.toString(latitude))+","+Uri.encode(Double.toString(longitude))));
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("geo:"+Uri.encode(Double.toString(latitude))+
+                        ","+Uri.encode(Double.toString(longitude))));
                 startActivity(intent);
             }
         });
-        if(ActivityCompat.checkSelfPermission(LocationLK.this, Manifest.permission.ACCESS_NETWORK_STATE) == PackageManager.PERMISSION_GRANTED) {
-            Geocoder gcd = new Geocoder(LocationLK.this, Locale.getDefault());
+        if(ActivityCompat.checkSelfPermission(LocationLK.this, Manifest.permission.ACCESS_NETWORK_STATE)
+                == PackageManager.PERMISSION_GRANTED) {
+
             ConnectivityManager cm =
                     (ConnectivityManager) LocationLK.this.getSystemService(Context.CONNECTIVITY_SERVICE);
-
             NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-            boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
-            if (isConnected) {
+            if (activeNetwork != null && activeNetwork.isConnectedOrConnecting()) {
                 btnSearchLK.setVisibility(View.VISIBLE);
+                Geocoder gcd = new Geocoder(LocationLK.this, Locale.getDefault());
                 try {
                     List<Address> addresses = gcd.getFromLocation(latitude, longitude, 1);
                     if (addresses.size() > 0) {
@@ -84,7 +85,6 @@ public class LocationLK extends AppCompatActivity {
                             public void onClick(View view) {
                                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com/search?q=" + Uri.encode(query)));
                                 startActivity(intent);
-                                Toast.makeText(getApplicationContext(), query ,Toast.LENGTH_SHORT).show();
                             }
                         });
                     } else {

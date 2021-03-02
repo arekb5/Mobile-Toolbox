@@ -52,7 +52,7 @@ public class LocationGPS extends AppCompatActivity {
     private Button btnSearch;
     private LocationCallback locationCallback;
     private String query = "";
-    FusedLocationProviderClient fusedLocationClient;
+    private FusedLocationProviderClient fusedLocationClient;
 
     private static final int REQUEST_CHECK_SETTINGS = 111;
 
@@ -88,13 +88,13 @@ public class LocationGPS extends AppCompatActivity {
                     tvPrecisionCurrent.setText(getResources().getString(R.string.currPrecision, location.getAccuracy()));
 
                     if(ActivityCompat.checkSelfPermission(LocationGPS.this, Manifest.permission.ACCESS_NETWORK_STATE) == PackageManager.PERMISSION_GRANTED) {
-                        Geocoder gcd = new Geocoder(LocationGPS.this, Locale.getDefault());
+
                         ConnectivityManager cm =
                                 (ConnectivityManager) LocationGPS.this.getSystemService(Context.CONNECTIVITY_SERVICE);
 
                         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-                        boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
-                        if (isConnected) {
+                        if (activeNetwork != null && activeNetwork.isConnectedOrConnecting()) {
+                            Geocoder gcd = new Geocoder(LocationGPS.this, Locale.getDefault());
                             btnSearch.setVisibility(View.VISIBLE);
                             try {
                                 List<Address> addresses = gcd.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
@@ -205,7 +205,16 @@ public class LocationGPS extends AppCompatActivity {
                     locationCallback,
                     Looper.getMainLooper());
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        LocationManager locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+        if(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
+            fusedLocationClient.removeLocationUpdates(locationCallback);
         }
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

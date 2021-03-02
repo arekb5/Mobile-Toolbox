@@ -1,107 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="#000000"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000"
-    android:orientation="vertical"
     tools:context=".LocationGPS">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/tvLongitudeCurrent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="20dp"
+            android:fontFamily="@font/audiowide"
+            android:text="@string/currLongitude"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:visibility="invisible" />
 
-            <TextView
-                android:id="@+id/tvLongitudeCurrent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="20dp"
-                android:fontFamily="@font/audiowide"
-                android:text="@string/currLongitude"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                android:visibility="invisible" />
+        <TextView
+            android:id="@+id/tvLatitudeCurrent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="20dp"
+            android:fontFamily="@font/audiowide"
+            android:text="@string/currLatitude"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:visibility="invisible" />
 
-            <TextView
-                android:id="@+id/tvLatitudeCurrent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="20dp"
-                android:fontFamily="@font/audiowide"
-                android:text="@string/currLatitude"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                android:visibility="invisible" />
+        <TextView
+            android:id="@+id/tvAltitudeCurrent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="20dp"
+            android:fontFamily="@font/audiowide"
+            android:text="@string/currAltitude"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:visibility="invisible" />
 
-            <TextView
-                android:id="@+id/tvAltitudeCurrent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="20dp"
-                android:fontFamily="@font/audiowide"
-                android:text="@string/currAltitude"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                android:visibility="invisible" />
+        <TextView
+            android:id="@+id/tvPrecisionCurrent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="20dp"
+            android:fontFamily="@font/audiowide"
+            android:text="@string/currPrecision"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:visibility="invisible" />
 
-            <TextView
-                android:id="@+id/tvPrecisionCurrent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="20dp"
-                android:fontFamily="@font/audiowide"
-                android:text="@string/currPrecision"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                android:visibility="invisible" />
+        <TextView
+            android:id="@+id/tvLocationCurrent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="20dp"
+            android:fontFamily="@font/audiowide"
+            android:text="@string/currLocation"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:visibility="invisible" />
 
-            <TextView
-                android:id="@+id/tvLocationCurrent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="20dp"
-                android:fontFamily="@font/audiowide"
-                android:text="@string/currLocation"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                android:visibility="invisible" />
+        <Button
+            android:id="@+id/btnShowMaps"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:text="Show location on maps"
+            android:visibility="invisible" />
 
-            <Button
-                android:id="@+id/btnShowMaps"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="20dp"
-                android:text="Show location in google maps"
-                android:visibility="invisible" />
-
-            <Button
-                android:id="@+id/btnSearch"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="20dp"
-                android:text="find location in google"
-                android:visibility="invisible" />
-        </LinearLayout>
-    </ScrollView>
-
-</LinearLayout>
+        <Button
+            android:id="@+id/btnSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:text="find location in google"
+            android:visibility="invisible" />
+    </LinearLayout>
+</ScrollView>

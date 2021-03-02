@@ -1,11 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity" >-->
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -14,11 +7,10 @@
     android:layout_height="match_parent"
     android:background="#000000"
     tools:context=".MainActivity">
-    <!--        android:orientation="vertical"-->
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/btnGPS"
@@ -47,6 +39,8 @@
             android:layout_marginEnd="20dp"
             android:drawableTop="@drawable/gpsnf"
             android:text="Last known location"
+            app:backgroundTint="@drawable/btn"
+            app:backgroundTintMode="src_over"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/btnLight"
             app:layout_constraintTop_toTopOf="parent" />
@@ -60,6 +54,8 @@
             android:layout_marginEnd="10dp"
             android:drawableTop="@drawable/gpsf"
             android:text="GPS Location"
+            app:backgroundTint="@drawable/btn"
+            app:backgroundTintMode="src_over"
             app:layout_constraintEnd_toStartOf="@+id/btnSpeedo"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnLight" />
@@ -73,6 +69,8 @@
             android:layout_marginEnd="20dp"
             android:drawableTop="@drawable/speed"
             android:text="Speedometer"
+            app:backgroundTint="@drawable/btn"
+            app:backgroundTintMode="src_over"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/btnGPS"
             app:layout_constraintTop_toBottomOf="@+id/btnLocation" />
@@ -104,5 +102,3 @@
             app:layout_constraintTop_toBottomOf="@+id/btnSpeedo" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
-
-<!--</LinearLayout>-->

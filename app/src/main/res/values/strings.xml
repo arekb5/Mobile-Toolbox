@@ -8,11 +8,11 @@
     <string name="label_accelerometer">Accelerometer: %1$.2fx %2$.2fy %3$.2fz</string>
     <string name="longitude">Longitude: %1$f</string>
     <string name="latitude">Latitude: %1$f</string>
-    <string name="altitude">Altitude: %1$.1f</string>
-    <string name="currLongitude">Current Longitude: %1$f</string>
-    <string name="currLatitude">Current Latitude: %1$f</string>
-    <string name="currAltitude">Current Altitude: %1$.1f</string>
-    <string name="currPrecision">Current Precision: %1$.1fm</string>
+    <string name="altitude">Altitude: %1$.1fm</string>
+    <string name="currLongitude">Longitude: %1$f</string>
+    <string name="currLatitude">Latitude: %1$f</string>
+    <string name="currAltitude">Altitude: %1$.1fm</string>
+    <string name="currPrecision">Precision: %1$.1fm</string>
     <string name="currSpeed">Current speed: %1$.2f</string>
-    <string name="currLocation">Current location: %1$s%2$s, %3$s, %4$s</string>
+    <string name="currLocation">Location:\n%1$s%2$s, %3$s, %4$s</string>
 </resources>

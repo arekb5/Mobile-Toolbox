@@ -15,10 +15,7 @@ public class Light extends AppCompatActivity implements SensorEventListener {
 
     SensorManager mSensorManager;
     ImageView bulb;
-    // Individual light and proximity sensors.
     private Sensor mSensorLight;
-
-    // TextViews to display current sensor values
     private TextView mTextSensorLight;
 
     @Override
@@ -39,7 +36,6 @@ public class Light extends AppCompatActivity implements SensorEventListener {
     @Override
     public void onStart() {
         super.onStart();
-
         if (mSensorLight != null) {
             mSensorManager.registerListener(this, mSensorLight,
                     SensorManager.SENSOR_DELAY_NORMAL);
@@ -56,17 +52,23 @@ public class Light extends AppCompatActivity implements SensorEventListener {
     public void onSensorChanged(SensorEvent sensorEvent) {
         int sensorType = sensorEvent.sensor.getType();
         float currentValue[] = sensorEvent.values;
-        // Event came from the light sensor.
         if (sensorType == Sensor.TYPE_LIGHT) {
             mTextSensorLight.setText(getResources().getString(
                     R.string.label_light, currentValue[0]));
-            if (currentValue[0] >= 0 && currentValue[0] < 1) bulb.animate().alpha(0f).setDuration(200).setListener(null);
-            else if (currentValue[0] >= 1 && currentValue[0] < 5) bulb.animate().alpha(50f/255f).setDuration(200).setListener(null);
-            else if (currentValue[0] >= 5 && currentValue[0] < 10) bulb.animate().alpha(100f/255f).setDuration(200).setListener(null);
-            else if (currentValue[0] >= 10 && currentValue[0] < 20) bulb.animate().alpha(150f/255f).setDuration(200).setListener(null);
-            else if (currentValue[0] >= 20 && currentValue[0] < 50) bulb.animate().alpha(180f/255f).setDuration(200).setListener(null);
-            else if (currentValue[0] >= 50 && currentValue[0] < 100) bulb.animate().alpha(210f/255f).setDuration(200).setListener(null);
-            else if (currentValue[0] >= 100) bulb.animate().alpha(1f).setDuration(200).setListener(null);
+            if (currentValue[0] >= 0 && currentValue[0] < 1)
+                bulb.animate().alpha(0f).setDuration(200).setListener(null);
+            else if (currentValue[0] >= 1 && currentValue[0] < 5)
+                bulb.animate().alpha(50f/255f).setDuration(200).setListener(null);
+            else if (currentValue[0] >= 5 && currentValue[0] < 10)
+                bulb.animate().alpha(100f/255f).setDuration(200).setListener(null);
+            else if (currentValue[0] >= 10 && currentValue[0] < 20)
+                bulb.animate().alpha(150f/255f).setDuration(200).setListener(null);
+            else if (currentValue[0] >= 20 && currentValue[0] < 50)
+                bulb.animate().alpha(180f/255f).setDuration(200).setListener(null);
+            else if (currentValue[0] >= 50 && currentValue[0] < 100)
+                bulb.animate().alpha(210f/255f).setDuration(200).setListener(null);
+            else
+                bulb.animate().alpha(1f).setDuration(200).setListener(null);
         }
     }
 
