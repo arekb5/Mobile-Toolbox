@@ -37,7 +37,8 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
     @Override
     protected void onResume() {
         super.onResume();
-        mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION), SensorManager.SENSOR_DELAY_GAME);
+        mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION),
+                SensorManager.SENSOR_DELAY_GAME);
     }
 
     @Override
@@ -58,10 +59,8 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
                 Animation.RELATIVE_TO_SELF, 0.5f,
                 Animation.RELATIVE_TO_SELF,
                 0.5f);
-
         ra.setDuration(210);
         ra.setFillAfter(true);
-
         ivCompass.startAnimation(ra);
         currentDegree = -degree;
     }

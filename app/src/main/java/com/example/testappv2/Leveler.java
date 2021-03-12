@@ -61,7 +61,8 @@ public class Leveler extends AppCompatActivity implements SensorEventListener {
     }
 
     private void regListener(){
-        mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR), SensorManager.SENSOR_DELAY_GAME);
+        mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR),
+                SensorManager.SENSOR_DELAY_GAME);
     }
 
     @Override
@@ -77,7 +78,6 @@ public class Leveler extends AppCompatActivity implements SensorEventListener {
             SensorManager.getRotationMatrixFromVector(
                     rotationMatrix, sensorEvent.values);
 
-
             float[] remappedRotationMatrix = new float[16];
             SensorManager.remapCoordinateSystem(rotationMatrix,
                     SensorManager.AXIS_X,
@@ -86,19 +86,18 @@ public class Leveler extends AppCompatActivity implements SensorEventListener {
 
 
             SensorManager.getOrientation(remappedRotationMatrix, orientations);
-            for(int i = 0; i < 3; i++) {
-                orientations[i] = (float)(Math.round(Math.toDegrees(orientations[i])*10)/10.0);
-            }
+            float degree = orientations[2];
+            degree = (float)(Math.round(Math.toDegrees(degree)*10)/10.0);
 
-            if(orientations[2] > 65) rotationModifier = -90;
-            if(orientations[2] < -65) rotationModifier = 90;
-            orientations[2] += rotationModifier;
-            orientations[2] = (float) (Math.round(orientations[2]*10)/10.0);
-            tvAngle.setText(Float.toString(orientations[2]) + "°");
-            if(orientations[2]> 10) orientations[2] = 10;
-            if(orientations[2]< -10) orientations[2] = -10;
-            TranslateAnimation anim = new TranslateAnimation(currentPosition, (ivArrow.getWidth()*(orientations[2]/21)), 0, 0);
-            currentPosition = (ivArrow.getWidth()*(orientations[2]/21));
+            if(degree > 65) rotationModifier = -90;
+            if(degree < -65) rotationModifier = 90;
+            degree += rotationModifier;
+            degree = (float) (Math.round(degree*10)/10.0);
+            tvAngle.setText(Float.toString(degree) + "°");
+            if(degree> 10) degree = 10;
+            if(degree< -10) degree = -10;
+            TranslateAnimation anim = new TranslateAnimation(currentPosition, (ivArrow.getWidth()*(degree/21)), 0, 0);
+            currentPosition = (ivArrow.getWidth()*(degree/21));
             anim.setDuration(50);
             anim.setFillAfter(true);
             ivArrow.startAnimation(anim);

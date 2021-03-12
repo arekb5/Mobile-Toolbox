@@ -149,8 +149,7 @@ public class LocationGPS extends AppCompatActivity {
             locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
             LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
                     .addLocationRequest(locationRequest);
-
-            builder.setAlwaysShow(true); //this displays dialog box like Google Maps with two buttons - OK and NO,THANKS
+            builder.setAlwaysShow(true);
 
             Task<LocationSettingsResponse> task =
                     LocationServices.getSettingsClient(this).checkLocationSettings(builder.build());
